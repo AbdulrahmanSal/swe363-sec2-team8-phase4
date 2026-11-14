@@ -60,7 +60,7 @@ The app has 23 screens (S01–S23), matching the wireframes from Phase 3. Open `
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<owner>/swe363-sec2-team8-phase4.git
+git clone https://github.com/AbdulrahmanSal/swe363-sec2-team8-phase4.git
 cd swe363-sec2-team8-phase4
 
 # 2. Install dependencies
@@ -99,7 +99,7 @@ All accounts are fictional. The password for every account is `Demo1234`.
 | Visitor | `visitor@demo.test` | Feed, directory, ordering, booking, laundry, My Requests |
 | Visitor + club rep. | `club@demo.test` | Club event submission and tracking |
 | Vendor (restaurant) | `v1@demo.test` | Dashboard, requests, profile, offerings, offers |
-| Vendor (barber / laundry / store) | `v3@` / `v4@` / `v5@demo.test` | Type-specific vendor features |
+| Vendor (barber / laundry / store) | `v3@demo.test` / `v4@demo.test` / `v5@demo.test` | Type-specific vendor features |
 | Administrator | `admin@demo.test` | All administration screens |
 
 ### Example walkthrough: restaurant order
@@ -109,7 +109,53 @@ All accounts are fictional. The password for every account is `Demo1234`.
 3. Log in as `v1@demo.test`, open **Requests**, open the order and select **Accept request**, then **Mark Ready for pickup**.
 4. Log back in as the visitor and open **My Requests** to see the updated status.
 
-_More walkthroughs (barber booking, laundry, club events, offers, vendor accounts) will be added as the screens are completed._
+### Public and account walkthroughs
+
+1. Open the feed as a guest. Try each content chip and open a detail modal. Scheduled announcements, scheduled/expired offers and unapproved events must stay hidden.
+2. Open **Vendor directory**, search `CAMPUS`, then choose **Restaurants**. Only Campus Bites should remain. Search an unknown name, then choose **Clear filters**.
+3. Open each active vendor. Restaurant, barber and laundry profiles have their own service action; the store has no purchase action. Fresh orange juice is labelled unavailable.
+4. Open **Login / Sign up → Sign up**. Try a duplicate email, a short password, and mismatched passwords. Correct the inputs and create a visitor account, then return to Login.
+5. Sign in as a visitor, open **Account profile**, change the name, then try an invalid current password. Enter a valid new password and save. Email, role and club permission cannot be edited here.
+6. Use the labelled **Demo account** selector to switch between visitor, club representative, vendor and admin accounts. Menus must follow the account, including when opening a different role's URL. Use **Reset demo** to restore sample records.
+
+### Other team flows to verify after integration
+
+- **Barber:** visitor → Campus Barber → Book appointment → choose service/date/slot → review/submit → vendor accepts → visitor sees the status. Try a reserved slot and rescheduling.
+- **Laundry:** visitor → Fresh Laundry → request pickup → choose service, future time and location → submit → vendor confirms a pickup time → progress through completion.
+- **Club event:** club representative submits a future event → administrator reviews/approves → visitor sees it on the feed. Test rejection with a reason and permission revocation.
+- **Offers:** vendor creates an active offer → visitor sees it → administrator removes it with a reason → it disappears publicly and the vendor sees the reason.
+- **Vendor account:** administrator creates a pending vendor → approves it → vendor can log in. Suspension blocks access and new requests while preserving history.
+
+### Shared components
+
+Open `/components` for live examples. Import individual components from `src/components/common/` or use its `index.js` barrel.
+
+```jsx
+import { FormField, ConfirmDialog, DataTable, useToast } from './components/common/index.js'
+// FormField: label, name, value, onChange, error, help; as="select" / "textarea".
+// ConfirmDialog: open, title, message, requireReason, onConfirm(reason), onClose.
+// Return {ok:false, errors} from onConfirm to keep it open with errors.
+// DataTable: columns [{key, label, render: row => ...}], rows, rowKey="id".
+// useToast() returns a function: toast('Changes saved.'). ToastProvider is already mounted.
+```
+
+`Modal` accepts `open`, `title`, `onClose`, `actions`, and children. It traps focus, supports Escape/backdrop dismissal and restores prior focus. `SuccessModal` accepts `detailsTo` or `onViewDetails`. `PageHeader` accepts `id`, `screenName`, `title`, `subtitle`, and `actions`. Filters, badges and empty/error states are shown in the demo.
+
+### Validation
+
+```bash
+npm run lint
+npm run build
+node scripts/verify-public-content.mjs
+```
+
+The public/account screens were also checked with DOM interaction tests for login, signup, profile, route restrictions, directory filters, feed details and all vendor types. These checks do not verify visual layout. Before submission, test all merged screens in a real browser at 375, 768 and 1440 px, using keyboard navigation and checking modal focus. Confirm that the service and administration screens have been replaced with the other owners' implementations.
+
+### Deployment
+
+After all team work is merged, connect the GitHub repository to Netlify, choose the final submission branch, set the build command to `npm run build` and publish directory to `dist`. `netlify.toml` supplies these settings and the single-page-app fallback. Alternatively build locally and drag the **contents of `dist`** into Netlify Drop. `public/_redirects` is copied to the build so refreshing a route such as `/vendor/offers` serves the React app.
+
+Test the live homepage and a direct deep link in a separate browser session. Add the actual live URL and view-only Figma URL at the top of this README. A design reference link is still required even when a separate high-fidelity UI design is skipped.
 
 ## Project structure
 

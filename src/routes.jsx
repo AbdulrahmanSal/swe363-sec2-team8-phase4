@@ -3,7 +3,7 @@
  * Used by App.jsx for routing and by ScreenIndex.jsx for the demo screen list.
  *
  * role: who the screen is for — 'public' | 'visitor' | 'vendor' | 'admin'.
- * Route protection by role is added in T08 once AuthContext (T06) exists.
+ * ProtectedRoute checks these roles before rendering a screen.
  */
 
 // Public & account
@@ -39,7 +39,7 @@ import OfferModeration from './pages/admin/OfferModeration.jsx'
 
 export const screens = [
   { id: 'S01', name: 'Login and sign up', path: '/login', role: 'public', element: <Login /> },
-  { id: 'S02', name: 'Account profile', path: '/profile', role: 'visitor', element: <AccountProfile /> },
+  { id: 'S02', name: 'Account profile', path: '/profile', role: 'authenticated', element: <AccountProfile /> },
   { id: 'S03', name: 'Mall feed', path: '/', role: 'public', element: <Feed /> },
   { id: 'S04', name: 'Vendor directory', path: '/directory', role: 'public', element: <Directory /> },
   { id: 'S05', name: 'Public vendor profile', path: '/vendors/:vendorId', role: 'public', element: <VendorProfile /> },
@@ -49,7 +49,7 @@ export const screens = [
   { id: 'S08', name: 'Laundry request', path: '/vendors/:vendorId/laundry', role: 'visitor', element: <LaundryRequest /> },
   { id: 'S09', name: 'My Requests', path: '/requests', role: 'visitor', element: <MyRequests /> },
   { id: 'S10', name: 'Request detail (visitor)', path: '/requests/:requestId', role: 'visitor', element: <RequestDetail mode="visitor" /> },
-  { id: 'S11', name: 'Club events', path: '/club-events', role: 'visitor', element: <ClubEvents /> },
+  { id: 'S11', name: 'Club events', path: '/club-events', role: 'visitor', clubOnly: true, element: <ClubEvents /> },
 
   { id: 'S12', name: 'Vendor dashboard', path: '/vendor', role: 'vendor', element: <VendorDashboard /> },
   { id: 'S13', name: 'Business profile editor', path: '/vendor/profile', role: 'vendor', element: <BusinessProfile /> },
