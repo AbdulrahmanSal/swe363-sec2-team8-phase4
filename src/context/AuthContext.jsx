@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
   const found = data.users.find((u) => u.id === userId) ?? null
   const ownVendor = found?.role === 'vendor' ? (data.vendors.find((v) => v.id === found.vendorId) ?? null) : null
   // A vendor account loses access as soon as its business stops being Active.
-  const user = found?.role === 'vendor' && ownVendor?.status !== 'Active' ? null : found
+  const user = found?.role === 'vendor' && ownVendor?.accountStatus !== 'active' ? null : found
   const role = user?.role ?? 'guest'
 
   const login = useCallback(

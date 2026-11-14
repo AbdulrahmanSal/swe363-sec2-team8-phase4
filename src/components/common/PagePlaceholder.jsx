@@ -7,11 +7,10 @@ export default function PagePlaceholder({ id, title, owner, requirements }) {
   return (
     <section>
       <div className="screenid">
-        {id} / {title}
+        {id} · {requirements}
       </div>
-      <div className="eyebrow">KFUPM Mall Hub</div>
       <h1>{title}</h1>
-      <p className="subtitle">Requirements: {requirements}</p>
+      <p className="subtitle">This screen is being built.</p>
       <div className="empty">
         <h3>Not built yet</h3>
         <p className="muted">

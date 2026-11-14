@@ -2,7 +2,7 @@
  * Barber booking helpers (VIS05, NFR05): 30-minute slots inside opening hours,
  * one appointment per slot. Pending and Accepted appointments both hold their slot.
  */
-import { DAYS, ms } from './format.js'
+import { DAYS, ms, riyadhISO } from './format.js'
 
 export const SLOT_MINUTES = 30
 
@@ -20,16 +20,16 @@ export function dayName(date) {
 /** The vendor's opening hours entry for a date, or undefined. */
 export function hoursFor(vendor, date) {
   const day = dayName(date)
-  return vendor.hours.find((h) => h.day === day)
+  return vendor.weeklyHours.find((h) => h.day === day)
 }
 
-/** Every slot start time ('YYYY-MM-DDTHH:MM') on a date, from opening to the last full slot before closing. */
+/** Every slot start on a Riyadh date ('YYYY-MM-DD'), as ISO strings, from opening to the last full slot before closing. */
 export function slotsFor(vendor, date) {
   const h = hoursFor(vendor, date)
   if (!h || h.closed) return []
   const slots = []
   for (let t = toMinutes(h.open); t + SLOT_MINUTES <= toMinutes(h.close); t += SLOT_MINUTES) {
-    slots.push(`${date}T${toHHMM(t)}`)
+    slots.push(riyadhISO(date, toHHMM(t)))
   }
   return slots
 }
