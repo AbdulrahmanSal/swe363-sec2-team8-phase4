@@ -1,0 +1,394 @@
+[
+  {
+    "route": "login",
+    "id": "S01",
+    "name": "Login and sign up",
+    "reqs": "AUTH01 AUTH02",
+    "params": {},
+    "account": null,
+    "filename": "S01_Login_and_sign_up.svg",
+    "width": 1440,
+    "height": 1254.0,
+    "textLayers": 37,
+    "embeddedImages": 0
+  },
+  {
+    "route": "profile",
+    "id": "S02",
+    "name": "Account profile",
+    "reqs": "AUTH03",
+    "params": {},
+    "account": "u1",
+    "filename": "S02_Account_profile.svg",
+    "width": 1440,
+    "height": 1175.0,
+    "textLayers": 41,
+    "embeddedImages": 0
+  },
+  {
+    "route": "feed",
+    "id": "S03",
+    "name": "Mall feed",
+    "reqs": "VIS01 VIS08 VEN06 ADM04 ADM05 ADM07 ADM08",
+    "params": {},
+    "account": null,
+    "filename": "S03_Mall_feed.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 56,
+    "embeddedImages": 0
+  },
+  {
+    "route": "directory",
+    "id": "S04",
+    "name": "Vendor directory",
+    "reqs": "VIS02 VIS03 ADM03",
+    "params": {},
+    "account": null,
+    "filename": "S04_Vendor_directory.svg",
+    "width": 1440,
+    "height": 1243.62,
+    "textLayers": 73,
+    "embeddedImages": 0
+  },
+  {
+    "route": "vendor",
+    "id": "S05",
+    "name": "Public vendor profile",
+    "reqs": "VIS03 VEN02 VEN03 VEN04 VEN06 ADM02",
+    "params": {
+      "id": "v1"
+    },
+    "account": null,
+    "filename": "S05_Public_vendor_profile.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 58,
+    "embeddedImages": 0
+  },
+  {
+    "route": "restaurant",
+    "id": "S06",
+    "name": "Restaurant order",
+    "reqs": "VIS04 VEN04",
+    "params": {
+      "id": "v1"
+    },
+    "account": "u1",
+    "filename": "S06_Restaurant_order.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 54,
+    "embeddedImages": 0
+  },
+  {
+    "route": "barber",
+    "id": "S07",
+    "name": "Barber booking",
+    "reqs": "VIS05 VEN04",
+    "params": {
+      "id": "v3"
+    },
+    "account": "u1",
+    "filename": "S07_Barber_booking.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 44,
+    "embeddedImages": 0
+  },
+  {
+    "route": "laundry",
+    "id": "S08",
+    "name": "Laundry request",
+    "reqs": "VIS06 VEN04",
+    "params": {
+      "id": "v4"
+    },
+    "account": "u1",
+    "filename": "S08_Laundry_request.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 42,
+    "embeddedImages": 0
+  },
+  {
+    "route": "myrequests",
+    "id": "S09",
+    "name": "Visitor dashboard and requests",
+    "reqs": "VIS04 VIS05 VIS06 VIS07",
+    "params": {},
+    "account": "u1",
+    "filename": "S09_Visitor_dashboard_and_requests.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 68,
+    "embeddedImages": 0
+  },
+  {
+    "route": "request",
+    "id": "S10",
+    "name": "Shared request detail",
+    "reqs": "VIS04 VIS05 VIS06 VIS07 VEN05",
+    "params": {
+      "id": "ORD-1001"
+    },
+    "account": "u1",
+    "filename": "S10_Shared_request_detail.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 48,
+    "embeddedImages": 0
+  },
+  {
+    "route": "club",
+    "id": "S11",
+    "name": "Club submissions and form",
+    "reqs": "VIS08 ADM06 ADM07",
+    "params": {},
+    "account": "u2",
+    "filename": "S11_Club_submissions_and_form.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 52,
+    "embeddedImages": 0
+  },
+  {
+    "route": "vdash",
+    "id": "S12",
+    "name": "Vendor dashboard",
+    "reqs": "VEN01 VEN03",
+    "params": {},
+    "account": "user-v1",
+    "filename": "S12_Vendor_dashboard.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 62,
+    "embeddedImages": 0
+  },
+  {
+    "route": "business",
+    "id": "S13",
+    "name": "Business profile editor",
+    "reqs": "VEN02 VEN03",
+    "params": {},
+    "account": "user-v1",
+    "filename": "S13_Business_profile_editor.svg",
+    "width": 1440,
+    "height": 1184.62,
+    "textLayers": 81,
+    "embeddedImages": 0
+  },
+  {
+    "route": "offerings",
+    "id": "S14",
+    "name": "Offerings manager",
+    "reqs": "VEN04",
+    "params": {},
+    "account": "user-v1",
+    "filename": "S14_Offerings_manager.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 51,
+    "embeddedImages": 0
+  },
+  {
+    "route": "vrequests",
+    "id": "S15",
+    "name": "Vendor requests",
+    "reqs": "VEN05",
+    "params": {},
+    "account": "user-v1",
+    "filename": "S15_Vendor_requests.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 58,
+    "embeddedImages": 0
+  },
+  {
+    "route": "offers",
+    "id": "S16",
+    "name": "Vendor offers",
+    "reqs": "VEN06 ADM08",
+    "params": {},
+    "account": "user-v1",
+    "filename": "S16_Vendor_offers.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 41,
+    "embeddedImages": 0
+  },
+  {
+    "route": "adash",
+    "id": "S17",
+    "name": "Admin dashboard",
+    "reqs": "ADM01",
+    "params": {},
+    "account": "a1",
+    "filename": "S17_Admin_dashboard.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 52,
+    "embeddedImages": 0
+  },
+  {
+    "route": "vendors",
+    "id": "S18",
+    "name": "Vendor account management",
+    "reqs": "ADM02 ADM03 VEN02",
+    "params": {},
+    "account": "a1",
+    "filename": "S18_Vendor_account_management.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 76,
+    "embeddedImages": 0
+  },
+  {
+    "route": "categories",
+    "id": "S19",
+    "name": "Directory settings",
+    "reqs": "ADM03",
+    "params": {},
+    "account": "a1",
+    "filename": "S19_Directory_settings.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 39,
+    "embeddedImages": 0
+  },
+  {
+    "route": "official",
+    "id": "S20",
+    "name": "Official content management",
+    "reqs": "ADM04 ADM05",
+    "params": {},
+    "account": "a1",
+    "filename": "S20_Official_content_management.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 48,
+    "embeddedImages": 0
+  },
+  {
+    "route": "permissions",
+    "id": "S21",
+    "name": "Club permissions",
+    "reqs": "ADM06 VIS08",
+    "params": {},
+    "account": "a1",
+    "filename": "S21_Club_permissions.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 41,
+    "embeddedImages": 0
+  },
+  {
+    "route": "review",
+    "id": "S22",
+    "name": "Event review",
+    "reqs": "ADM07 VIS08",
+    "params": {},
+    "account": "a1",
+    "filename": "S22_Event_review.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 58,
+    "embeddedImages": 0
+  },
+  {
+    "route": "moderation",
+    "id": "S23",
+    "name": "Offer moderation",
+    "reqs": "ADM08 VEN06",
+    "params": {},
+    "account": "a1",
+    "filename": "S23_Offer_moderation.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 56,
+    "embeddedImages": 0
+  },
+  {
+    "route": "login",
+    "id": "S01b",
+    "name": "Visitor sign up",
+    "params": {},
+    "account": null,
+    "variant": "signup",
+    "filename": "S01b_Visitor_sign_up.svg",
+    "width": 1440,
+    "height": 1432.4,
+    "textLayers": 39,
+    "embeddedImages": 0
+  },
+  {
+    "route": "vendor",
+    "id": "S05b",
+    "name": "Barber Public Profile",
+    "params": {
+      "id": "v3"
+    },
+    "account": null,
+    "filename": "S05b_Barber_Public_Profile.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 52,
+    "embeddedImages": 0
+  },
+  {
+    "route": "vendor",
+    "id": "S05c",
+    "name": "Laundry Public Profile",
+    "params": {
+      "id": "v4"
+    },
+    "account": null,
+    "filename": "S05c_Laundry_Public_Profile.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 52,
+    "embeddedImages": 0
+  },
+  {
+    "route": "vendor",
+    "id": "S05d",
+    "name": "Informational Store Public Profile",
+    "params": {
+      "id": "v5"
+    },
+    "account": null,
+    "filename": "S05d_Informational_Store_Public_Profile.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 49,
+    "embeddedImages": 0
+  },
+  {
+    "route": "request",
+    "id": "S10b",
+    "name": "Barber Request Detail",
+    "params": {
+      "id": "APT-1003"
+    },
+    "account": "u1",
+    "filename": "S10b_Barber_Request_Detail.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 53,
+    "embeddedImages": 0
+  },
+  {
+    "route": "request",
+    "id": "S10c",
+    "name": "Laundry Request Detail",
+    "params": {
+      "id": "LND-1004"
+    },
+    "account": "u1",
+    "filename": "S10c_Laundry_Request_Detail.svg",
+    "width": 1440,
+    "height": 1024,
+    "textLayers": 62,
+    "embeddedImages": 0
+  }
+]
