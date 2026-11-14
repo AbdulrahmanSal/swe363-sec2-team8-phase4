@@ -1,0 +1,485 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background: #f3f6f3;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a,
+select {
+  outline-offset: 3px;
+}
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+  outline: 3px solid #dac961;
+}
+.mh-portaltop {
+  height: 83px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background: #fff;
+  border-top: 4px solid #008540;
+  border-bottom: 1px solid #e0e8e2;
+  gap: 20px;
+  position: relative;
+  z-index: 5;
+}
+.mh-portalbrand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+.mh-hubmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: #00573f;
+  color: #fff;
+  font-size: 17px;
+  letter-spacing: -1px;
+  font-weight: bold;
+  clip-path: polygon(
+    20% 0,
+    80% 0,
+    100% 20%,
+    100% 80%,
+    80% 100%,
+    20% 100%,
+    0 80%,
+    0 20%
+  );
+  flex-shrink: 0;
+}
+.mh-portalbrand b {
+  color: #00573f;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  font-weight: 800;
+}
+.mh-portalbrand b span {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  border-left: 1px solid #b8d2c1;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+.mh-portalbrand small {
+  display: block;
+  font-size: 8px;
+  color: #92a498;
+  letter-spacing: 0.2px;
+  margin-top: 5px;
+}
+.mh-portaltools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mh-demotag {
+  font-size: 8px;
+  color: #7e9b89;
+  letter-spacing: 0.8px;
+  font-weight: bold;
+}
+.mh-topdivider {
+  height: 27px;
+  width: 1px;
+  background: #e4ebe5;
+  margin: 0 7px;
+}
+.mh-topavatar {
+  background: #eef6f0;
+  border: 1px solid #d5e7da;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #41825c;
+  font-size: 12px;
+}
+.mh-topidentity b {
+  font-size: 11px;
+  font-weight: 600;
+  color: #395e45;
+  display: block;
+}
+.mh-topidentity small {
+  font-size: 9px;
+  color: #94a599;
+  display: block;
+  margin-top: 5px;
+}
+.mh-signout {
+  background: none;
+  border: 0;
+  color: #839c8c;
+  margin-left: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+.mh-portalbody {
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+  min-height: calc(100vh - 83px);
+}
+.mh-portalside {
+  position: relative;
+  background: #00573f;
+  color: #c1dbc9;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 83px);
+}
+.mh-side-user {
+  padding: 26px 20px 22px;
+  text-align: center;
+  border-bottom: 1px solid #ffffff17;
+  margin-bottom: 24px;
+}
+.mh-side-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #76a38b;
+  color: #dcece1;
+  font-size: 20px;
+  background: #ffffff0b;
+  margin: 0 auto 12px;
+}
+.mh-side-user b {
+  font-size: 12px;
+  display: block;
+  font-weight: 500;
+  color: #fff;
+}
+.mh-side-user small {
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  color: #8db5a0;
+  display: block;
+  margin-top: 6px;
+}
+.mh-navlabel {
+  font-size: 8px;
+  letter-spacing: 1.6px;
+  color: #6fa38b;
+  padding: 0 24px;
+  margin: 0 0 12px;
+  font-weight: bold;
+}
+.mh-portalside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+.mh-portalside nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #b3d2bf;
+  font-size: 11px;
+  text-decoration: none;
+  padding: 14px 13px;
+  border-radius: 5px;
+  border-left: 3px solid transparent;
+}
+.mh-portalside nav a > svg:last-child {
+  margin-left: auto;
+  opacity: 0.5;
+}
+.mh-portalside nav a.active {
+  color: #fff;
+  background: #ffffff12;
+  border-left-color: #dac961;
+}
+.mh-portalside nav a:hover {
+  background: #ffffff0d;
+  color: white;
+}
+.mh-sidebarfoot {
+  margin-top: auto;
+  padding: 65px 25px 25px;
+  position: relative;
+}
+.mh-side-gold {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #dac961;
+  margin-bottom: 17px;
+}
+.mh-sidebarfoot b {
+  font-size: 9px;
+  line-height: 1.5;
+  color: #bfd9c8;
+  display: block;
+  font-weight: 400;
+}
+.mh-sidebarfoot p {
+  font-size: 8px;
+  color: #6a9d85;
+  margin: 9px 0 5px;
+}
+.mh-sidebarfoot small {
+  color: #6a9d85;
+  font-size: 8px;
+}
+.mh-mainwrap {
+  min-width: 0;
+}
+.mh-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 30px;
+  border-bottom: 1px solid #e1e9e3;
+  background: #fafcf9;
+  min-height: 61px;
+  color: #9aa99e;
+  font-size: 10px;
+  flex-wrap: wrap;
+}
+.mh-breadcrumb > b {
+  color: #5e7e67;
+  font-size: 10px;
+  font-weight: 500;
+}
+.mh-demo-controls {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.mh-demo-controls label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  color: #8c9e8f;
+}
+.mh-demo-controls select {
+  font-size: 10px;
+  width: 150px;
+  border: 1px solid #dce5de;
+  border-radius: 4px;
+  color: #5e7f68;
+  background: white;
+  padding: 5px;
+}
+.mh-demo-controls button {
+  font-size: 9px;
+  color: #6c8b75;
+  background: white;
+  border: 1px solid #dce5de;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+}
+.mh-portalmains {
+  padding: 30px 32px 20px;
+  max-width: 1650px;
+  margin: auto;
+  min-width: 0;
+  outline: none;
+}
+.mh-pagefooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #e2eae3;
+  color: #a1afa4;
+  font-size: 8px;
+  padding-top: 17px;
+  margin-top: 35px;
+}
+.mh-mobilemenu {
+  display: none;
+}
+.mh-skip {
+  position: fixed;
+  top: -80px;
+  left: 20px;
+  background: #fff;
+  color: #00573f;
+  border: 2px solid #008540;
+  border-radius: 5px;
+  padding: 12px;
+  z-index: 200;
+}
+.mh-skip:focus {
+  top: 10px;
+}
+.mh-demoerror {
+  font-size: 12px;
+  background: #fff2ef;
+  color: #ad503f;
+  padding: 15px;
+  border-radius: 4px;
+}
+.mh-menubackdrop {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .mh-portalbody {
+    grid-template-columns: 205px minmax(0, 1fr);
+  }
+  .mh-demotag {
+    display: none;
+  }
+  .mh-portalmains {
+    padding: 26px 22px;
+  }
+  .mh-breadcrumb {
+    padding: 14px 22px;
+  }
+  .mh-breadcrumb > span:first-of-type {
+    display: none;
+  }
+  .mh-portalside nav a {
+    font-size: 10px;
+    gap: 10px;
+  }
+  .mh-portalbrand small {
+    font-size: 7px;
+  }
+}
+@media (max-width: 767px) {
+  .mh-portaltop {
+    height: 72px;
+    padding: 0 16px;
+  }
+  .mh-portalbrand {
+    gap: 8px;
+  }
+  .mh-hubmark {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  .mh-portalbrand b {
+    font-size: 16px;
+  }
+  .mh-portalbrand b span {
+    font-size: 8px;
+    letter-spacing: 1px;
+    margin-left: 6px;
+    padding-left: 6px;
+  }
+  .mh-portalbrand small {
+    font-size: 5.8px;
+    max-width: 190px;
+  }
+  .mh-topidentity,
+  .mh-topdivider,
+  .mh-signout {
+    display: none;
+  }
+  .mh-topavatar {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+  }
+  .mh-portaltools {
+    gap: 0;
+  }
+  .mh-portalbody {
+    display: block;
+    min-height: calc(100vh - 72px);
+  }
+  .mh-portalside {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 245px;
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+    z-index: 60;
+    height: 100dvh;
+    overflow: auto;
+  }
+  .mh-portalside.is-open {
+    transform: translateX(0);
+  }
+  .mh-menubackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: #143c2bb0;
+    border: 0;
+    z-index: 59;
+  }
+  .mh-mobilemenu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #467b5a;
+    border: 0;
+    padding: 4px;
+    cursor: pointer;
+  }
+  .mh-breadcrumb {
+    padding: 10px 14px;
+    gap: 8px;
+    min-height: 55px;
+  }
+  .mh-breadcrumb > svg,
+  .mh-breadcrumb > span:first-of-type {
+    display: none;
+  }
+  .mh-demo-controls {
+    gap: 8px;
+  }
+  .mh-demo-controls label > span {
+    display: none;
+  }
+  .mh-demo-controls select {
+    width: 110px;
+    font-size: 9px;
+  }
+  .mh-demo-controls button {
+    font-size: 8px;
+  }
+  .mh-portalmains {
+    padding: 23px 16px 20px;
+  }
+  .mh-pagefooter {
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 28px;
+    font-size: 7px;
+  }
+  .mh-portalbrand b span {
+    display: inline-block;
+  }
+  .mh-breadcrumb > b {
+    font-size: 9px;
+  }
+  .mh-sidebarfoot {
+    padding-top: 25px;
+  }
+}
