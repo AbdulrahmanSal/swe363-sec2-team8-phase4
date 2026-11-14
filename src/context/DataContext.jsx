@@ -6,17 +6,17 @@
  *
  * Generic actions (use these for your own screens instead of editing this file):
  *   add('offers', { id: uid('f'), ... })            adds a record to the start of a collection
- *   update('vendors', 'v1', { operating: 'Closed' }) merges changes into the record with that id
+ *   update('vendors', 'v1', { isOpen: false })        merges changes into the record with that id
  *   remove('offerings', 'o3')                         deletes the record (prefer a `removed` flag where history matters)
- *   setCollection('categories', (list) => [...list, 'Pharmacies'])   for collections that are not records with ids
- *   logActivity('Vendor New Snack Corner approved')  shows on the admin dashboard
+ *   setCollection('users', (list) => ...)             replace a whole collection in one step
+ *   logActivity('Vendor New Snack Corner approved', user.name)  shows on the admin dashboard
  *
  * Request actions take the signed-in user and return { ok: true, request } or { ok: false, errors }.
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { createSeedData } from '../data/mockData.js'
 import * as requestService from '../data/requestService.js'
-import { stamp } from '../utils/format.js'
+import { stamp, uid } from '../utils/format.js'
 
 const STORAGE_KEY = 'mallhub-demo'
 
@@ -25,7 +25,8 @@ const DataContext = createContext(null)
 function loadData() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY))
-    if (saved && saved.version === 1) return saved
+    // Saved data from an older version of the data shapes is discarded.
+    if (saved && saved.version === createSeedData().version) return saved
   } catch {
     // Storage blocked or corrupted: fall back to fresh demo data.
   }
@@ -68,7 +69,8 @@ export function DataProvider({ children }) {
   const remove = useCallback((name, id) => setCollection(name, (list) => list.filter((r) => r.id !== id)), [setCollection])
 
   const logActivity = useCallback(
-    (text) => setCollection('activity', (list) => [{ at: stamp(), text }, ...list].slice(0, 100)),
+    (text, actor = 'System') =>
+      setCollection('activity', (list) => [{ id: uid('act'), at: stamp(), actor, text }, ...list].slice(0, 100)),
     [setCollection],
   )
 

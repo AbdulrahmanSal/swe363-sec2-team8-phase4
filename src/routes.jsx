@@ -36,6 +36,10 @@ import OfficialContent from './pages/admin/OfficialContent.jsx'
 import ClubPermissions from './pages/admin/ClubPermissions.jsx'
 import EventReview from './pages/admin/EventReview.jsx'
 import OfferModeration from './pages/admin/OfferModeration.jsx'
+import AdminWorkspace from './features/admin/AdminWorkspace.jsx'
+
+/** Ibrahim's admin pages read data through his AdminModuleProvider. */
+const admin = (page) => <AdminWorkspace>{page}</AdminWorkspace>
 
 export const screens = [
   { id: 'S01', name: 'Login and sign up', path: '/login', role: 'public', element: <Login /> },
@@ -58,11 +62,11 @@ export const screens = [
   { id: 'S10', name: 'Request detail (vendor)', path: '/vendor/requests/:requestId', role: 'vendor', element: <RequestDetail mode="vendor" /> },
   { id: 'S16', name: 'Vendor offers', path: '/vendor/offers', role: 'vendor', element: <VendorOffers /> },
 
-  { id: 'S17', name: 'Administration dashboard', path: '/admin', role: 'admin', element: <AdminDashboard /> },
-  { id: 'S18', name: 'Vendor account management', path: '/admin/vendors', role: 'admin', element: <VendorAccounts /> },
+  { id: 'S17', name: 'Administration dashboard', path: '/admin', role: 'admin', element: admin(<AdminDashboard />) },
+  { id: 'S18', name: 'Vendor account management', path: '/admin/vendors', role: 'admin', element: admin(<VendorAccounts />) },
   { id: 'S19', name: 'Directory settings', path: '/admin/categories', role: 'admin', element: <DirectorySettings /> },
-  { id: 'S20', name: 'Official content', path: '/admin/content', role: 'admin', element: <OfficialContent /> },
-  { id: 'S21', name: 'Club permissions', path: '/admin/club-permissions', role: 'admin', element: <ClubPermissions /> },
-  { id: 'S22', name: 'Club event review', path: '/admin/events', role: 'admin', element: <EventReview /> },
-  { id: 'S23', name: 'Offer moderation', path: '/admin/offers', role: 'admin', element: <OfferModeration /> },
+  { id: 'S20', name: 'Official content', path: '/admin/content', role: 'admin', element: admin(<OfficialContent />) },
+  { id: 'S21', name: 'Club permissions', path: '/admin/permissions', role: 'admin', element: admin(<ClubPermissions />) },
+  { id: 'S22', name: 'Club event review', path: '/admin/events', role: 'admin', element: admin(<EventReview />) },
+  { id: 'S23', name: 'Offer moderation', path: '/admin/offers', role: 'admin', element: admin(<OfferModeration />) },
 ]

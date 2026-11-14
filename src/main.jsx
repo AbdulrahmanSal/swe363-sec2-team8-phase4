@@ -6,8 +6,8 @@ import { DataProvider } from './context/DataContext.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { ToastProvider } from './components/common/Toast.jsx'
 import './styles/index.css'
+import './styles/layout.css'
 import './components/common/common.css'
-import './components/layout/layout.css'
 import './pages/public/public.css'
 
 createRoot(document.getElementById('root')).render(
@@ -15,7 +15,9 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <DataProvider>
         <AuthProvider>
-          <ToastProvider><App /></ToastProvider>
+          <ToastProvider>
+            <App />
+          </ToastProvider>
         </AuthProvider>
       </DataProvider>
     </BrowserRouter>

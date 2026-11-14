@@ -57,7 +57,7 @@ export function canReschedule(request, now = Date.now()) {
  * Each action: { action, label, kind: 'primary'|'danger', needsReason, needsTime, disabled, hint }
  *   action      'cancel' | 'reschedule' | 'accept' | 'reject' | 'advance' | 'vendor-cancel'
  *   needsReason the confirm dialog must collect a reason
- *   needsTime   the dialog must collect a confirmed pickup time (laundry accept)
+ *   needsTime   the dialog must collect a confirmed pickup time (laundry accept, stored as confirmedAt)
  *   disabled    shown but not clickable; `hint` says why
  *
  * @param {object} request
@@ -113,11 +113,11 @@ export function getActions(request, role, now = Date.now()) {
  * Apply an action and return the updated request (the original is not changed).
  *
  * @returns {{ ok: true, request: object } | { ok: false, error: string, field?: string }}
- * @param {object} options { role, actor, reason, confirmed, now }
- *   actor     name stored in the history entry
- *   confirmed laundry pickup time 'YYYY-MM-DDTHH:MM' (required to accept laundry)
+ * @param {object} options { role, by, reason, confirmedAt, now }
+ *   by          name stored in the history entry
+ *   confirmedAt laundry pickup time as an ISO string (required to accept laundry)
  */
-export function applyAction(request, action, { role, actor, reason = '', confirmed = '', now = Date.now() } = {}) {
+export function applyAction(request, action, { role, by, reason = '', confirmedAt = '', now = Date.now() } = {}) {
   const allowed = getActions(request, role, now).find((a) => a.action === action)
   if (!allowed || allowed.disabled) {
     return { ok: false, error: 'This action is not available for the request in its current status.' }
@@ -126,8 +126,8 @@ export function applyAction(request, action, { role, actor, reason = '', confirm
     return { ok: false, error: 'Enter a reason.', field: 'reason' }
   }
   if (allowed.needsTime) {
-    if (!confirmed) return { ok: false, error: 'Choose the confirmed pickup time.', field: 'confirmed' }
-    if (!(ms(confirmed) > now)) return { ok: false, error: 'The confirmed pickup time must be in the future.', field: 'confirmed' }
+    if (!confirmedAt) return { ok: false, error: 'Choose the confirmed pickup time.', field: 'confirmedAt' }
+    if (!(ms(confirmedAt) > now)) return { ok: false, error: 'The confirmed pickup time must be in the future.', field: 'confirmedAt' }
   }
 
   let status
@@ -142,7 +142,7 @@ export function applyAction(request, action, { role, actor, reason = '', confirm
       break
     case 'accept':
       status = STATUS_SEQUENCE[request.type].at(1) // Preparing / Accepted / Scheduled
-      if (request.type === 'laundry') changes.confirmed = confirmed
+      if (request.type === 'laundry') changes.confirmedAt = confirmedAt
       break
     case 'advance':
       status = nextStatus(request)
@@ -151,7 +151,7 @@ export function applyAction(request, action, { role, actor, reason = '', confirm
       return { ok: false, error: `Unknown action: ${action}` }
   }
 
-  const entry = { status, at: new Date(now).toISOString(), actor, reason: reason.trim() }
+  const entry = { status, at: new Date(now).toISOString(), by, reason: reason.trim() }
   return {
     ok: true,
     request: { ...request, ...changes, status, history: [...request.history, entry] },

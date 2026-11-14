@@ -1,5 +1,5 @@
 .field-error { display:block; margin-top:5px; font-size:12px; font-weight:600; }
-[aria-invalid='true'] { border:2px solid #333; }
+[aria-invalid='true'] { border:2px solid var(--danger); }
 .modal:focus { outline:none; }
 .modal p, .modal dd { overflow-wrap:anywhere; }
 .card h2, .card p, .info dd { overflow-wrap:anywhere; }
