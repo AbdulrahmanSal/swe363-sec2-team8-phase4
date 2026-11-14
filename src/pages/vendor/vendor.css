@@ -1,0 +1,137 @@
+/* Extra rules for the vendor screens (S12–S16) and S19. Everything else comes from index.css. */
+
+.vd-metriclink {
+  margin-top: 10px;
+}
+
+.vd-statuscard .panelhead {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.vd-shortcuts {
+  margin-top: 6px;
+}
+
+.vd-cellsub {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.vd-cellmain {
+  color: var(--heading);
+  font-weight: 700;
+}
+
+.vd-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.vd-dates {
+  white-space: nowrap;
+}
+
+.vd-reason {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--danger);
+}
+
+.vd-hours {
+  margin-top: 8px;
+}
+
+.vd-hours .hoursrow .field-error {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+.vd-hourshead {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.vd-formactions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+/* Tables turn into stacked cards on phones (no sideways scrolling at 375 px). */
+@media (max-width: 767px) {
+  .vd-table table,
+  .vd-table tbody,
+  .vd-table tr,
+  .vd-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .vd-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .vd-table tr {
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    margin-bottom: 12px;
+    padding: 6px 4px;
+  }
+
+  .vd-table td {
+    display: grid;
+    grid-template-columns: minmax(90px, 0.6fr) minmax(0, 1fr);
+    gap: 10px;
+    padding: 8px 10px;
+    border-bottom: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .vd-table td::before {
+    content: attr(data-label);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #7c8d80;
+  }
+
+  .vd-dates {
+    white-space: normal;
+  }
+
+  .vd-hours .hoursrow > span {
+    grid-column: 1 / -1;
+    font-weight: 700;
+  }
+
+  .vd-hourshead {
+    display: none;
+  }
+}
+
+.vd-hours {
+  border: 0;
+  padding: 0;
+  margin: 12px 0 0;
+  min-width: 0;
+}
+
+.vd-hours legend {
+  padding: 0;
+}
+
+.vd-hours legend h3 {
+  margin: 0 0 4px;
+}
