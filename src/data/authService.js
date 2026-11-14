@@ -24,8 +24,8 @@ export function login(data, { email, password }) {
 
   if (user.role === 'vendor') {
     const vendor = data.vendors.find((v) => v.id === user.vendorId)
-    if (!vendor || vendor.status !== 'Active') {
-      const why = vendor?.status === 'Pending' ? 'is waiting for administrator approval' : 'is not active'
+    if (!vendor || vendor.accountStatus !== 'active') {
+      const why = vendor?.accountStatus === 'pending' ? 'is waiting for administrator approval' : 'is not active'
       return { ok: false, errors: { form: `This business account ${why}. Contact mall management.` } }
     }
   }
@@ -56,7 +56,7 @@ export function register(data, { name, email, password, confirm }) {
   const next = {
     ...data,
     users: [...data.users, user],
-    activity: [{ at: stamp(), text: `New visitor account: ${user.name}` }, ...data.activity].slice(0, 100),
+    activity: [{ id: `act-${user.id}`, at: stamp(), actor: user.name, text: `New visitor account: ${user.name}` }, ...data.activity].slice(0, 100),
   }
   return { ok: true, data: next, user }
 }
