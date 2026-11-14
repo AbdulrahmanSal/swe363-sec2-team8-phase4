@@ -114,13 +114,13 @@ _More walkthroughs (barber booking, laundry, club events, offers, vendor account
 ## Project structure
 
 ```
-├── design/                  # Figma reference: one SVG per screen + original Phase 3 prototype
+├── design/                  # Figma reference: desktop SVGs, mobile SVGs, Phase 3 prototype
 ├── public/                  # Static files served as-is (favicon)
 ├── src/
 │   ├── assets/              # Images and icons imported by components
 │   ├── components/
 │   │   ├── common/          # Reusable UI pieces (buttons, modals, form fields…)
-│   │   └── layout/          # Topbar, sidebar, and per-role menus
+│   │   └── layout/          # Top bar, side menu, demo controls, per-role menus
 │   ├── context/             # AuthContext (useAuth) and DataContext (useData)
 │   ├── data/                # Mock data + request/account rules (plain JS, no React)
 │   ├── hooks/               # Custom React hooks
@@ -130,7 +130,7 @@ _More walkthroughs (barber booking, laundry, club events, offers, vendor account
 │   │   ├── visitor/         # S06–S11: services, My Requests, request detail, club events
 │   │   ├── vendor/          # S12–S16: vendor dashboard and management
 │   │   └── admin/           # S17–S23: administration screens
-│   ├── styles/              # Global CSS and theme variables
+│   ├── styles/              # index.css (theme + content classes), layout.css (frame)
 │   ├── utils/               # Status rules, booking slots, date/money formatting, validation
 │   ├── routes.jsx           # One list of every screen and its URL
 │   ├── App.jsx              # Router setup
@@ -142,9 +142,11 @@ _More walkthroughs (barber booking, laundry, club events, offers, vendor account
 
 ## Design reference
 
-The UI follows Ibrahim's Figma reference: a grayscale, medium-fidelity design with a top bar, a left sidebar menu that changes per role, and cards and tables in the workspace. The reference is desktop-only (1440 px); the mobile layout is our own: below 768 px the sidebar turns into a slide-out menu and grids stack into one column.
+The team uses the KFUPM green theme from Ibrahim's design: a white top bar with the "MH" mark, a dark green side menu that changes per role, and white rounded cards on a light green-gray page. Desktop screens are in `design/screens/` (one SVG per screen) and phone layouts in `design/mobile/`. Below 767 px the side menu turns into a slide-out drawer and grids stack into one column.
 
-When building a screen, open its SVG in `design/screens/` and reuse the class names from `src/styles/index.css` (`panel`, `card`, `metrics`, `chips`, `formgrid`, `timeline`, `modal`, and so on).
+When building a screen, reuse the class names from `src/styles/index.css` (`panel`, `card`, `metrics`, `chips`, `badge good|warn|bad`, `formgrid`, `errorbox`, `timeline`, `modal`, and so on) instead of writing new CSS. The frame (top bar, side menu, breadcrumb bar) is styled in `src/styles/layout.css`.
+
+The admin screens (S17, S18, S20–S23) live in `src/features/admin/` and `src/pages/admin/` and carry their own `mh-` styles.
 
 ## Working with data
 
@@ -157,7 +159,7 @@ import { useData } from '../../context/DataContext.jsx'
 const { user, role, ownVendor } = useAuth()          // role: 'guest' | 'visitor' | 'vendor' | 'admin'
 const { data, update, add, logActivity } = useData() // data.vendors, data.requests, data.offers, ...
 
-update('vendors', ownVendor.id, { operating: 'Closed' })
+update('vendors', ownVendor.id, { isOpen: false })
 ```
 
 Changes are saved in the browser (`localStorage`), so they survive a refresh. The record shapes are documented at the top of `src/data/mockData.js`; the request status rules are in `src/utils/requestStatus.js`.

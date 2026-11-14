@@ -1,37 +1,53 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Icon from '../common/Icon.jsx'
+import { useAuth } from '../../context/AuthContext.jsx'
+import { roleDescription } from './navigation.js'
 
-/**
- * Top bar from the Figma reference: brand on the left, signed-in user (or login link) on the right.
- * The menu button only shows on small screens, where the sidebar becomes a slide-out drawer.
- * T08 replaces the hard-coded login link with the signed-in user from AuthContext.
- */
-export default function Topbar({ menuOpen, onToggleMenu }) {
+/** Top bar: KFUPM Mall Hub brand on the left, signed-in user and Sign out on the right. */
+export default function Topbar() {
+  const { user, ownVendor, logout } = useAuth()
+  const navigate = useNavigate()
+
+  const signOut = () => {
+    logout()
+    navigate('/login')
+  }
+
   return (
-    <header className="topbar">
-      <div className="topbar-left">
-        <button
-          type="button"
-          className="menu-toggle small"
-          aria-expanded={menuOpen}
-          aria-controls="sidebar"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          onClick={onToggleMenu}
-        >
-          {menuOpen ? '✕' : '☰'}
-        </button>
-        <Link to="/" className="brand">
-          <div className="brandmark" aria-hidden="true">M</div>
-          <div>
-            <strong>KFUPM Mall Hub</strong>
-            <small>Discover · Connect · Request</small>
-          </div>
-        </Link>
-      </div>
+    <header className="mh-portaltop">
+      <Link to="/" className="mh-portalbrand" aria-label="KFUPM Mall Hub home">
+        <span className="mh-hubmark" aria-hidden="true">
+          MH
+        </span>
+        <div>
+          <b>
+            KFUPM <span>MALL HUB</span>
+          </b>
+          <small>King Fahd University of Petroleum &amp; Minerals</small>
+        </div>
+      </Link>
 
-      <div className="identity">
-        <Link to="/login" className="button small">
-          Login / Sign up
-        </Link>
+      <div className="mh-portaltools">
+        <span className="mh-demotag">STUDENT PROJECT · DEMO</span>
+        <span className="mh-topdivider" aria-hidden="true" />
+        {user ? (
+          <>
+            <span className="mh-topavatar" aria-hidden="true">
+              {user.name.at(0)}
+            </span>
+            <div className="mh-topidentity">
+              <b>{user.name}</b>
+              <small>{roleDescription(user, ownVendor)}</small>
+            </div>
+            <button type="button" className="mh-signout" onClick={signOut} aria-label="Sign out" title="Sign out">
+              <Icon name="logout" size={18} />
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="button primary small">
+            Login / Sign up
+          </Link>
+        )}
       </div>
     </header>
   )

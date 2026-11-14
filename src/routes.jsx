@@ -3,7 +3,7 @@
  * Used by App.jsx for routing and by ScreenIndex.jsx for the demo screen list.
  *
  * role: who the screen is for — 'public' | 'visitor' | 'vendor' | 'admin'.
- * Route protection by role is added in T08 once AuthContext (T06) exists.
+ * Route protection by role is added in T08.
  */
 
 // Public & account
@@ -62,7 +62,7 @@ export const screens = [
   { id: 'S18', name: 'Vendor account management', path: '/admin/vendors', role: 'admin', element: <VendorAccounts /> },
   { id: 'S19', name: 'Directory settings', path: '/admin/categories', role: 'admin', element: <DirectorySettings /> },
   { id: 'S20', name: 'Official content', path: '/admin/content', role: 'admin', element: <OfficialContent /> },
-  { id: 'S21', name: 'Club permissions', path: '/admin/club-permissions', role: 'admin', element: <ClubPermissions /> },
+  { id: 'S21', name: 'Club permissions', path: '/admin/permissions', role: 'admin', element: <ClubPermissions /> },
   { id: 'S22', name: 'Club event review', path: '/admin/events', role: 'admin', element: <EventReview /> },
   { id: 'S23', name: 'Offer moderation', path: '/admin/offers', role: 'admin', element: <OfferModeration /> },
 ]
