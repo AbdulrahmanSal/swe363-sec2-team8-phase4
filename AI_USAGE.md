@@ -1,18 +1,15 @@
-# AI Usage Declaration
-
-This file lists the AI tools used on this project and the files they affected, as required by the course AI Usage Guidelines. Full conversations are included in the AI Evidence zip submitted on Blackboard.
-
-## Phase 1 – 3
-
-_Fill in per the earlier submissions._
+# AI usage
 
 ## Phase 4 – Front-End
 
-| Member | AI tool | Used for | Files affected |
-|---|---|---|---|
-| Abdulrahman Maashi | Claude (claude.ai) | Planning the Phase 4 task split; generating the initial project setup (Vite + React config, folder structure, routing for all 23 screens, placeholder pages, top bar and sidebar layout, and the global stylesheet ported from the Figma reference with added mobile rules) and first drafts of the README and this file. T05–T07: mock data ported from the Phase 3 prototype, request/auth service functions, status rules, booking helpers, AuthContext and DataContext; logic verified with a Node test script and a browser check. Later: renamed data fields to the team schema used by Ibrahim's admin module, switched the shared stylesheet and app frame (top bar, side menu, breadcrumb bar, demo account switcher) to the KFUPM green theme ported from Ibrahim's preview, and wrote the AdminWorkspace connector (committed by Ibrahim with his admin pages); verified in Chromium at 1440 px and 390 px | `package.json`, `vite.config.js`, `eslint.config.js`, `index.html`, `.gitignore`, `.env.example`, `public/favicon.svg`, `src/main.jsx`, `src/App.jsx`, `src/routes.jsx`, `src/layouts/AppLayout.jsx`, `src/components/layout/Topbar.jsx`, `src/components/layout/Sidebar.jsx`, `src/components/layout/navigation.js`, `src/components/common/PagePlaceholder.jsx`, `src/pages/**` (placeholders), `src/styles/index.css`, `README.md`, `AI_USAGE.md`, `src/data/mockData.js`, `src/data/requestService.js`, `src/data/authService.js`, `src/context/DataContext.jsx`, `src/context/AuthContext.jsx`, `src/utils/requestStatus.js`, `src/utils/booking.js`, `src/utils/format.js`, `src/utils/validation.js`, `src/styles/layout.css`, `src/components/common/Icon.jsx`, `src/components/layout/DemoControls.jsx` |
-| Mohammed Shublaq | _Tool name, or "No AI tools used"_ | | |
-| Khaled Alanazi | _Tool name, or "No AI tools used"_ | | |
-| Ibrahim Alrashaid | _Tool name, or "No AI tools used"_ | | |
+| Member            | Tool                                                                                  | Use                                                                                                                                                                                                                                                                       | Files affected                                                                                                                                                                                                         |
+| ----------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ibrahim Alrashaid | ChatGPT / Codex (exact selected model should be copied from your session if required) | Read task distribution; implement and refine six React admin pages, admin adapter/UI, validators, isolated preview, KFUPM-inspired styles, tests, mobile design references and handoff documentation. Troubleshooting, testing and code formatting were also AI-assisted. | `src/pages/admin/*`, `src/features/admin/*`, `src/demo/*`, `tests/*`, `public/responsive-check.html`, `scripts/make-mobile-references.py`, `design/*`, `docs/*`, `README.md`, project configuration and package files. |
 
-> Each member adds their own row. AI coding assistants (GitHub Copilot, Cursor, Claude Code, etc.), including autocomplete suggestions, must be declared. Every member must be able to explain the code they committed.
+The earlier desktop Figma-reference exports and their fixes were also AI-assisted and must be declared if included in Phase 4 evidence. They are a separate artifact, not all reproduced here.
+
+The assistant generated substantive code, tests and documentation, not merely proofreading. Ibrahim must review and be able to explain code he contributes. This file is a record of tool use, not a signed individual or team declaration and not a claim that a PR, Figma link, merge, full-team audit, or submission has happened.
+
+Evidence to retain: the actual complete, unedited conversation for this current implementation, the uploaded task distribution, original AI outputs/intermediate versions, and this final ZIP. Do not substitute the earlier reconstructed transcript for an original chat. If a real earlier conversation is missing, follow the instructor's unavailable-conversation procedure.
+
+No signatures, teammate declarations or Git history have been fabricated. Each member must complete their own declaration and sign it only after checking accuracy.
