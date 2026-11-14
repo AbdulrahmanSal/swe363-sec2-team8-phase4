@@ -1,0 +1,4 @@
+.demo-emails { padding-left:20px; font-size:11px; overflow-wrap:anywhere; }
+.preserve-lines { white-space:pre-wrap; }
+.auth .notice { overflow-wrap:anywhere; }
+@media(max-width:768px) { .auth .panel { padding:20px 16px; } }
