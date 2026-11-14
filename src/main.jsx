@@ -8,6 +8,7 @@ import { ToastProvider } from './components/common/Toast.jsx'
 import './styles/index.css'
 import './components/common/common.css'
 import './components/layout/layout.css'
+import './pages/public/public.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
