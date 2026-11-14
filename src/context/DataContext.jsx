@@ -2,7 +2,8 @@
  * App data (T06): every collection from mockData.js, saved in the browser so changes survive a refresh.
  *
  *   const { data, add, update, remove, setCollection, logActivity, resetDemo,
- *           placeOrder, bookAppointment, rescheduleAppointment, requestLaundry, changeRequestStatus } = useData()
+ *           placeOrder, bookAppointment, rescheduleAppointment, requestLaundry, changeRequestStatus,
+ *           submitClubEvent } = useData()
  *
  * Generic actions (use these for your own screens instead of editing this file):
  *   add('offers', { id: uid('f'), ... })            adds a record to the start of a collection
@@ -12,10 +13,12 @@
  *   logActivity('Vendor New Snack Corner approved', user.name)  shows on the admin dashboard
  *
  * Request actions take the signed-in user and return { ok: true, request } or { ok: false, errors }.
+ * submitClubEvent({ user, title, description, location, startAt, endAt }) works the same way (request = the event).
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { createSeedData } from '../data/mockData.js'
 import * as requestService from '../data/requestService.js'
+import { submitClubEvent } from '../data/clubService.js'
 import { stamp, uid } from '../utils/format.js'
 
 const STORAGE_KEY = 'mallhub-demo'
@@ -100,6 +103,7 @@ export function DataProvider({ children }) {
       rescheduleAppointment: run(requestService.rescheduleAppointment),
       requestLaundry: run(requestService.requestLaundry),
       changeRequestStatus: run(requestService.changeRequestStatus),
+      submitClubEvent: run(submitClubEvent),
     }),
     [data, add, update, remove, setCollection, logActivity, resetDemo, run],
   )
