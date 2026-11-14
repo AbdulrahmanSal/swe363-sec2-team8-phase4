@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext.jsx'
 import { ToastProvider } from './components/common/Toast.jsx'
 import './styles/index.css'
 import './components/common/common.css'
+import './components/layout/layout.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

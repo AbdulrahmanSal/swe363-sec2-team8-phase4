@@ -1,6 +1,6 @@
 /**
  * Sidebar menus per role — same items and order as the Figma reference.
- * T08 picks the role from AuthContext (T06); until then Sidebar guesses it from the URL.
+ * The sidebar chooses its menu from the authenticated user role.
  */
 export const menus = {
   guest: {
@@ -47,9 +47,3 @@ export const menus = {
   },
 }
 
-/** Temporary: choose a menu from the current URL until real login exists. */
-export function roleFromPath(pathname) {
-  if (pathname.startsWith('/vendor/') || pathname === '/vendor') return 'vendor'
-  if (pathname.startsWith('/admin')) return 'admin'
-  return 'visitor'
-}
