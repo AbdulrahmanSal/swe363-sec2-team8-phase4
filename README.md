@@ -9,8 +9,10 @@ Vendor representatives keep their business information, offerings, and offers up
 > **Course:** SWE 363 – Web Engineering, Section 02 · **Team 8** · King Fahd University of Petroleum & Minerals
 > **Phase 4:** Front-end prototype (React). All data is mock data stored in the browser; the real backend comes in Phase 5.
 
-- **Live demo:** _add the deployed link here (T37)_
-- **Figma design:** _add the view-only Figma link here_ (exported screens are also in [`design/screens`](./design/screens))
+- **Live website:** [Open KFUPM Mall Hub](https://subtle-profiterole-05f7df.netlify.app)
+- **Figma wireframe reference:** [View all 29 reference screens](https://www.figma.com/design/LXZZ5UKtUAEnlxZKBj4dk6/KFUPM-Mall-Hub?node-id=0-1) (exported screens are also in [`design/screens`](./design/screens))
+
+The Figma file contains static desktop wireframes covering the main application flows. The Phase 4 React implementation develops this reference with updated KFUPM-inspired green styling and responsive layouts.
 
 ---
 
