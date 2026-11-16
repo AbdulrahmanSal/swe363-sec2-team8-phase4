@@ -53,7 +53,7 @@ The app has 23 screens (S01–S23), matching the wireframes from Phase 3. Open `
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) 20 or newer (includes npm)
+- [Node.js](https://nodejs.org/) 20.19+, 22.12+, or 24+ (includes npm; required by the installed test dependencies)
 - Git
 
 ### Installation
@@ -87,7 +87,7 @@ Phase 4 runs entirely on mock data, so no variables are required. `.env.example`
 | `npm run build` | Builds the production version into `dist/` |
 | `npm run preview` | Serves the production build locally |
 | `npm run lint` | Checks the code with ESLint |
-| `npm test` | Runs the admin module tests with Vitest |
+| `npm test` | Runs admin, combined-app, and service-request tests with Vitest |
 
 ## Usage
 
@@ -147,9 +147,11 @@ import { FormField, ConfirmDialog, DataTable, useToast } from './components/comm
 ```bash
 npm run lint
 npm run build
-npm test                                  # admin module tests (Vitest)
+npm test                                  # admin + combined-app + service tests (Vitest)
 node scripts/verify-public-content.mjs
 ```
+
+The resubmission adds tests using the actual App, authentication/data providers, and admin adapter together: restaurant order progress, offering changes with preserved historical prices, club submission and admin approval, private-request access restrictions, and laundry scheduling. Request-service tests also cover held barber slots, reschedule conflicts, unavailable businesses, business-type validation and malformed dates.
 
 The public/account screens were also checked with DOM interaction tests for login, signup, profile, route restrictions, directory filters, feed details and all vendor types. These checks do not verify visual layout. Before submission, test all merged screens in a real browser at 375, 768 and 1440 px, using keyboard navigation and checking modal focus. Confirm that every placeholder screen has been replaced with its owner's implementation.
 

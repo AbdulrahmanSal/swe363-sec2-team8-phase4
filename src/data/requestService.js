@@ -87,6 +87,7 @@ export function placeOrder(data, { user, vendorId, cart }, now = Date.now()) {
 /** Shared slot check for booking and rescheduling. */
 function slotProblem(data, vendor, slot, now, ignoreId = null) {
   if (!slot) return 'Choose an available time slot.'
+  if (!Number.isFinite(ms(slot))) return 'Choose a valid appointment date and time.'
   if (!slotsFor(vendor, riyadhDate(0, ms(slot))).includes(slot)) return 'Choose a time within the barbershop opening hours.'
   if (!(ms(slot) > now)) return 'Choose a time in the future.'
   if (isSlotTaken(data.requests, vendor.id, slot, ignoreId)) return 'That slot was just booked. Choose another time.'
@@ -100,6 +101,7 @@ export function bookAppointment(data, { user, vendorId, serviceId, slot }, now =
   const vendor = data.vendors.find((v) => v.id === vendorId)
   const unavailable = vendorUnavailableReason(vendor)
   if (unavailable) return fail({ form: unavailable })
+  if (vendor.type !== 'barber') return fail({ form: 'This business does not take barber appointments.' })
 
   const errors = {}
   const service = data.offerings.find((o) => o.id === serviceId && o.vendorId === vendorId)
@@ -134,6 +136,9 @@ export function rescheduleAppointment(data, { user, requestId, slot }, now = Dat
   if (!request || !user || request.visitorId !== user.id) return fail({ form: 'This appointment could not be found.' })
   if (!canReschedule(request, now)) return fail({ form: 'This appointment can no longer be rescheduled.' })
   const vendor = data.vendors.find((v) => v.id === request.vendorId)
+  const unavailable = vendorUnavailableReason(vendor)
+  if (unavailable) return fail({ form: unavailable })
+  if (vendor.type !== 'barber') return fail({ form: 'This business does not take barber appointments.' })
   if (slot === request.slot) return fail({ slot: 'Choose a different time from the current one.' })
   const problem = slotProblem(data, vendor, slot, now, request.id)
   if (problem) return fail({ slot: problem })
@@ -158,6 +163,7 @@ export function requestLaundry(data, { user, vendorId, serviceId, pickupLocation
   const vendor = data.vendors.find((v) => v.id === vendorId)
   const unavailable = vendorUnavailableReason(vendor)
   if (unavailable) return fail({ form: unavailable })
+  if (vendor.type !== 'laundry') return fail({ form: 'This business does not take laundry pickup requests.' })
 
   const errors = {}
   const service = data.offerings.find((o) => o.id === serviceId && o.vendorId === vendorId)
