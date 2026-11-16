@@ -12,7 +12,6 @@ import {
   dashboardStats,
   fmt,
   label,
-  eventState,
 } from "../../features/admin/rules";
 export default function AdminDashboard() {
   const a = useAdmin(),
