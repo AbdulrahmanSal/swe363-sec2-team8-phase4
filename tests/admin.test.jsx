@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createElement, useState } from "react";
 import {
   render,
   screen,
@@ -43,7 +43,7 @@ function Harness({
       data={{ ...data, ...actions }}
       navigate={navigate}
     >
-      <Page />
+      {createElement(Page)}
       <output data-testid="snapshot" hidden>
         {JSON.stringify(data)}
       </output>
